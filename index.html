@@ -86,6 +86,7 @@
 
       #off {
         padding-bottom: 4px;
+        width: 150%;
       }
 
       #on {
@@ -128,13 +129,13 @@
         border-bottom: 4px solid #003da5;
       }
 
-      #we_niziu {
+      #we_niziu1 {
         position: relative;
         background-color: black;
         padding-bottom: 4px;
       }
 
-      #we_niziu:before {
+      #we_niziu1:before {
         content: "";
         width: 100%;
         height: 4px;
@@ -142,19 +143,62 @@
         bottom: 0;
         background: linear-gradient(
           to right,
-          #d6001c,
-          #ff6900,
-          #fedb00,
-          #00aa13,
-          #003da5,
-          #001e62,
-          #5c068c
+          #ba0c2f,
+          #ff6a39,
+          #f9e267,
+          #00cfb4
         );
+      }
+
+      #we_niziu2 {
+        position: relative;
+        background-color: black;
+        padding-bottom: 4px;
+      }
+
+      #we_niziu2:before {
+        content: "";
+        width: 100%;
+        height: 4px;
+        position: absolute;
+        bottom: 0;
+        background: linear-gradient(
+          to right,
+          #71c5e8,
+          #003da5,
+          #7f35b2,
+          #ecb3cb,
+          #ffffff
+        );
+      }
+
+      @keyframes animation1 {
+        0% { background-color: #ff6a39; color: #000000; }
+        11% { background-color: #71c5e8; color: #000000; }
+        22% { background-color: #7f35b2; color: #ffffff; }
+        33% { background-color: #f9e267; color: #000000; }
+        44% { background-color: #ffffff; color: #000000; }
+        55% { background-color: #00cfb4; color: #000000; }
+        66% { background-color: #ba0c2f; color: #ffffff; }
+        77% { background-color: #ecb3cb; color: #000000; }
+        88% { background-color: #003da5; color: #ffffff; }
+        100% { background-color: #ff6a39; color: #000000; }
+      }
+
+      @keyframes animation2 {
+        0% { background-color: #ba0c2f; color: #ffffff; }
+        23% { background-color: #ba0c2f; color: #ffffff; }
+        25% { background-color: #000000; color: #ffffff; }
+        48% { background-color: #000000; color: #ffffff; }
+        50% { background-color: #7f35b2; color: #ffffff; }
+        73% { background-color: #7f35b2; color: #ffffff; }
+        75% { background-color: #000000; color: #ffffff; }
+        98% { background-color: #000000; color: #ffffff; }
       }
     </style>
   </head>
   <body>
-    <div id="main" onclick="changeTo((STATE.index + 1) % 11)">
+    <div id="main" onclick="changeTo((STATE.index + 1) % 12)">
       NIZI LIGHT
     </div>
     <div id="bottom">
@@ -191,104 +235,108 @@
       <button class="button" id="nina" onclick="changeTo(9)">
         N
       </button>
-      <button class="button" id="we_niziu" onclick="changeTo(10)">
-        W
+      <button class="button" id="we_niziu1" onclick="changeTo(10)">
+        1
+      </button>
+      <button class="button" id="we_niziu2" onclick="changeTo(11)">
+        2
       </button>
     </div>
     <script>
+      const MAIN_DIV = document.getElementById('main');
+
       const STATE = {
         index: -1,
       };
 
       const INFO = [
         {
-          id: 'on',
+          text: 'NIZI LIGHT',
           color: '#000000',
           backgroundColor: '#ffffff',
-          text: 'NIZI LIGHT',
         },
         {
-          id: 'mako',
+          text: 'MAKO',
           color: '#000000',
           backgroundColor: '#ff6a39',
-          text: 'MAKO',
         },
         {
-          id: 'rio',
+          text: 'RIO',
           color: '#000000',
           backgroundColor: '#71c5e8',
-          text: 'RIO',
         },
         {
-          id: 'maya',
+          text: 'MAYA',
           color: '#ffffff',
           backgroundColor: '#7f35b2',
-          text: 'MAYA',
         },
         {
-          id: 'riku',
+          text: 'RIKU',
           color: '#000000',
           backgroundColor: '#f9e267',
-          text: 'RIKU',
         },
         {
-          id: 'ayaka',
+          text: 'AYAKA',
           color: '#000000',
           backgroundColor: '#ffffff',
-          text: 'AYAKA',
         },
         {
-          id: 'mayuka',
+          text: 'MAYUKA',
           color: '#000000',
           backgroundColor: '#00cfb4',
-          text: 'MAYUKA',
         },
         {
-          id: 'rima',
+          text: 'RIMA',
           color: '#ffffff',
           backgroundColor: '#ba0c2f',
-          text: 'RIMA',
         },
         {
-          id: 'miihi',
+          text: 'MIIHI',
           color: '#000000',
           backgroundColor: '#ecb3cb',
-          text: 'MIIHI',
         },
         {
-          id: 'nina',
+          text: 'NINA',
           color: '#ffffff',
           backgroundColor: '#003da5',
-          text: 'NINA',
         },
         {
-          id: 'we_niziu',
+          text: 'WE NIZIU!',
           color: '#ffffff',
           backgroundColor: '#000000',
+          animation: 'animation1 15s infinite',
+        },
+        {
           text: 'WE NIZIU!',
+          color: '#ffffff',
+          backgroundColor: '#000000',
+          animation: 'animation2 .9s infinite',
         },
       ];
 
-      const MAIN_DIV = document.getElementById('main');
-
+      /**
+       * i must be between 0 and 11 inclusive
+       */
       function changeTo(i) {
         const {
-          id,
+          text,
           color,
           backgroundColor,
-          text,
+          animation,
         } = INFO[i];
-        STATE.index = i;
-        MAIN_DIV.innerText = text;
-        MAIN_DIV.style.color = color;
-        MAIN_DIV.style.backgroundColor = backgroundColor;
+        setState(i, text, color, backgroundColor, animation);
       }
 
       function turnOff() {
-        STATE.index = -1;
-        MAIN_DIV.innerText = 'NIZI LIGHT';
-        MAIN_DIV.style.color = '#ffffff';
-        MAIN_DIV.style.backgroundColor = '#000000';
+        setState(-1, 'NIZI LIGHT', '#ffffff', '#000000', null);
+      }
+
+      function setState(index, text, color, backgroundColor, animation) {
+        STATE.index = index;
+        MAIN_DIV.innerText = text;
+        MAIN_DIV.style.color = color;
+        MAIN_DIV.style.backgroundColor = backgroundColor;
+        MAIN_DIV.style.animation = animation;
       }
     </script>
   </body>
