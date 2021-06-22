@@ -3,6 +3,9 @@
   <head>
     <title>NIZI LIGHT</title>
 
+    <!-- Mobile Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+
     <!-- Font from Google Fonts (same as NiziU OFFICIAL FAN CLUB navbar) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,27 +21,46 @@
         margin: 0;
         background-color: black;
         color: white;
+        touch-action: manipulation;
       }
 
       #main {
         width: 100vw;
-        height: 90vh;
-        font-size: 70pt;
+        height: 90%;
+        font-size: 58px;
+        position: fixed;
+        overflow: hidden;
         display: flex;
         justify-content: center;
         align-items: center;
+        cursor: pointer;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      /* For desktop: */
+      @media only screen and (min-width: 768px) {
+        #main {
+          font-size: 96px;
+        }
       }
 
       #bottom {
+        position: fixed;
+        bottom: 0;
         width: 100vw;
-        height: 10vh;
+        height: 10%;
         display: flex;
         justify-content: space-around;
         align-items: center;
       }
 
       .button {
-        font-size: 20pt;
+        font-size: 12px;
         color: white;
         background-color: transparent;
         cursor: pointer;
@@ -51,59 +73,71 @@
         height: 100%;
       }
 
+      /* For desktop: */
+      @media only screen and (min-width: 768px) {
+        .button {
+          font-size: 24px;
+        }
+      }
+
       .button:focus {
         outline: 0;
       }
 
+      #off {
+        padding-bottom: 4px;
+      }
+
       #on {
-        border-bottom: 3px solid #ffffff;
+        border-bottom: 4px solid #ffffff;
       }
 
       #mako {
-        border-bottom: 3px solid #ff6a39;
+        border-bottom: 4px solid #ff6a39;
       }
 
       #rio {
-        border-bottom: 3px solid #71c5e8;
+        border-bottom: 4px solid #71c5e8;
       }
 
       #maya {
-        border-bottom: 3px solid #7f35b2;
+        border-bottom: 4px solid #7f35b2;
       }
 
       #riku {
-        border-bottom: 3px solid #f9e267;
+        border-bottom: 4px solid #f9e267;
       }
 
       #ayaka {
-        border-bottom: 3px solid #ffffff;
+        border-bottom: 4px solid #ffffff;
       }
 
       #mayuka {
-        border-bottom: 3px solid #00cfb4;
+        border-bottom: 4px solid #00cfb4;
       }
 
       #rima {
-        border-bottom: 3px solid #ba0c2f;
+        border-bottom: 4px solid #ba0c2f;
       }
 
       #miihi {
-        border-bottom: 3px solid #ecb3cb;
+        border-bottom: 4px solid #ecb3cb;
       }
 
       #nina {
-        border-bottom: 3px solid #003da5;
+        border-bottom: 4px solid #003da5;
       }
 
       #we_niziu {
         position: relative;
         background-color: black;
+        padding-bottom: 4px;
       }
 
       #we_niziu:before {
         content: "";
         width: 100%;
-        height: 3px;
+        height: 4px;
         position: absolute;
         bottom: 0;
         background: linear-gradient(
@@ -120,49 +154,142 @@
     </style>
   </head>
   <body>
-    <div id="main">
+    <div id="main" onclick="changeTo((STATE.index + 1) % 11)">
       NIZI LIGHT
     </div>
     <div id="bottom">
-      <button class="button" id="off">
+      <button class="button" id="off" onclick="turnOff()">
         OFF
       </button>
-      <button class="button" id="on">
+      <button class="button" id="on" onclick="changeTo(0)">
         ON
       </button>
-      <button class="button" id="mako">
+      <button class="button" id="mako" onclick="changeTo(1)">
         M
       </button>
-      <button class="button" id="rio">
+      <button class="button" id="rio" onclick="changeTo(2)">
         R
       </button>
-      <button class="button" id="maya">
+      <button class="button" id="maya" onclick="changeTo(3)">
         M
       </button>
-      <button class="button" id="riku">
+      <button class="button" id="riku" onclick="changeTo(4)">
         R
       </button>
-      <button class="button" id="ayaka">
+      <button class="button" id="ayaka" onclick="changeTo(5)">
         A
       </button>
-      <button class="button" id="mayuka">
+      <button class="button" id="mayuka" onclick="changeTo(6)">
         M
       </button>
-      <button class="button" id="rima">
+      <button class="button" id="rima" onclick="changeTo(7)">
         R
       </button>
-      <button class="button" id="miihi">
+      <button class="button" id="miihi" onclick="changeTo(8)">
         M
       </button>
-      <button class="button" id="nina">
+      <button class="button" id="nina" onclick="changeTo(9)">
         N
       </button>
-      <button class="button" id="we_niziu">
-        We NiziU!
+      <button class="button" id="we_niziu" onclick="changeTo(10)">
+        W
       </button>
     </div>
     <script>
+      const STATE = {
+        index: -1,
+      };
 
+      const INFO = [
+        {
+          id: 'on',
+          color: '#000000',
+          backgroundColor: '#ffffff',
+          text: 'NIZI LIGHT',
+        },
+        {
+          id: 'mako',
+          color: '#000000',
+          backgroundColor: '#ff6a39',
+          text: 'MAKO',
+        },
+        {
+          id: 'rio',
+          color: '#000000',
+          backgroundColor: '#71c5e8',
+          text: 'RIO',
+        },
+        {
+          id: 'maya',
+          color: '#ffffff',
+          backgroundColor: '#7f35b2',
+          text: 'MAYA',
+        },
+        {
+          id: 'riku',
+          color: '#000000',
+          backgroundColor: '#f9e267',
+          text: 'RIKU',
+        },
+        {
+          id: 'ayaka',
+          color: '#000000',
+          backgroundColor: '#ffffff',
+          text: 'AYAKA',
+        },
+        {
+          id: 'mayuka',
+          color: '#000000',
+          backgroundColor: '#00cfb4',
+          text: 'MAYUKA',
+        },
+        {
+          id: 'rima',
+          color: '#ffffff',
+          backgroundColor: '#ba0c2f',
+          text: 'RIMA',
+        },
+        {
+          id: 'miihi',
+          color: '#000000',
+          backgroundColor: '#ecb3cb',
+          text: 'MIIHI',
+        },
+        {
+          id: 'nina',
+          color: '#ffffff',
+          backgroundColor: '#003da5',
+          text: 'NINA',
+        },
+        {
+          id: 'we_niziu',
+          color: '#ffffff',
+          backgroundColor: '#000000',
+          text: 'WE NIZIU!',
+        },
+      ];
+
+      const MAIN_DIV = document.getElementById('main');
+
+      function changeTo(i) {
+        const {
+          id,
+          color,
+          backgroundColor,
+          text,
+        } = INFO[i];
+        STATE.index = i;
+        MAIN_DIV.innerText = text;
+        MAIN_DIV.style.color = color;
+        MAIN_DIV.style.backgroundColor = backgroundColor;
+      }
+
+      function turnOff() {
+        STATE.index = -1;
+        MAIN_DIV.innerText = 'NIZI LIGHT';
+        MAIN_DIV.style.color = '#ffffff';
+        MAIN_DIV.style.backgroundColor = '#000000';
+      }
     </script>
   </body>
 </html>
