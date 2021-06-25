@@ -17,7 +17,16 @@
     <!-- Font from Google Fonts (same as NiziU OFFICIAL FAN CLUB navbar) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <!-- Load the actual font asynchronously -->
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    >
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap">
+    </noscript>
 
     <!-- Custom CSS -->
     <style>
