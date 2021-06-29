@@ -1,5 +1,6 @@
 # nizi-light
-A simple web app that mimics the NiziU OFFICIAL LIGHT STICK
+
+A simple web app that mimics the [NiziU OFFICIAL LIGHT STICK](https://www.sonymusicshop.jp/m/item/itemShw.php?site=S&ima=5124&cd=SSZX000060236)
 
 ## Copyright Disclaimer
 
