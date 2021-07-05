@@ -1,4 +1,4 @@
-# nizi-light
+# [NIZI LIGHT](https://rikilele.github.io/nizi-light/) <img height="24px" src="https://raw.githubusercontent.com/rikilele/nizi-light/main/favicon.png">
 
 A simple web app that mimics the [NiziU OFFICIAL LIGHT STICK](https://www.sonymusicshop.jp/m/item/itemShw.php?site=S&ima=5124&cd=SSZX000060236)
 
