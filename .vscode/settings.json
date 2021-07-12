@@ -1,0 +1,16 @@
+{
+  "deno.enable": true,
+  "deno.lint": true,
+  "deno.unstable": true,
+  "cSpell.words": [
+    "Kyuko",
+    "NIZI",
+    "ayaka",
+    "mayuka",
+    "miihi",
+    "niziu",
+    "preconnect",
+    "riku",
+    "rima"
+  ]
+}
